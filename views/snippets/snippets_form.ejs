@@ -1,0 +1,30 @@
+<%- include('../partials/header', {title: title}) %>
+<div class="content">
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" value="<%= _snippet.title %>">
+        </div>
+        <div class="form-group">
+            <label for="lang">Langaguage</label>
+            <select name="lang" value="<%= _snippet.lang %>">
+                <% languages.forEach((lang) => { %>
+                    <option value="<%= lang.id %>"><%= lang.name %></option>    
+                <% }) %>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label for="code">Code</label>
+            <input type="text" name="code" value="<%= _snippet.code %>">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" value="<%= _snippet.description %>">
+        </div>
+        <button type="submit"><%= btnText %></button>
+    </form>
+</div>
+
+<script src="/js/prism.js"></script>
+<%- include('../partials/footer') %>

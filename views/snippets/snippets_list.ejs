@@ -1,0 +1,24 @@
+<%- include('../partials/header', {title: title}) %>
+<div class="content">
+    <a href="/new" class="float">+</a>
+    <% snippets.forEach((snippet) => { %>
+        <div class="card">
+            <a href="/delete/<%= snippet.id %>" class="button delete">Supprimer</a>
+            <a href="/edit/<%= snippet.id %>" class="button edit">Modifier</a>
+            <i class="<%= snippet.Language.logo %> colored"></i><p class="title"><%= snippet.title %> [<%= snippet.User.name %>]</p>
+            <pre><code class="<%= snippet.Language.htmlClass %>"><%= snippet.code %></code></pre>
+            <p>
+                <%= snippet.description %>
+            </p>
+            <p class="date">
+                Posté le 
+                <%= snippet.creationDate.toLocaleDateString("fr-FR", {dateType: "short"}) %> 
+                à 
+                <%= snippet.creationDate.toLocaleTimeString("fr-FR", {timeType: "short"}) %>
+            </p>
+        </div>
+    <% }); %>   
+</div>
+
+<script src="/js/prism.js"></script>
+<%- include('../partials/footer') %>

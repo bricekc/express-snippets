@@ -1,0 +1,13 @@
+<%- include('../partials/header', {title: title}) %>
+<div class="content">
+    <a href="/admin/users/new" class="float">+</a>
+
+    <% users.forEach((user) => { %>
+        <div class="card">
+            <p><%= user.name %></p>
+            <p><%= user.role %></p>
+            <a href="/admin/users/delete/<%= user.name %>" class="button delete">Supprimer</a>
+            <a href="/admin/users/edit/<%= user.name %>" class="button edit">Modifier</a>
+        </div>
+    <% }); %>
+</div>

@@ -1,0 +1,17 @@
+<%- include('../partials/header', {title: title}) %>
+<div class="content">
+    <% languages.forEach((language) => { %>
+        <div class="card">
+            <i class="<%= language.logo %> colored"></i>
+            <p class="title">
+                <a href="/?lang=<%= language.id %>">
+                <%= language.name %>
+                <%= language._count.snippets %> snippets
+                </a>
+            </p>
+        </div>
+    <% }); %>   
+</div>
+
+<script src="/js/prism.js"></script>
+<%- include('../partials/footer') %>

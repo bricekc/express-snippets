@@ -1,0 +1,17 @@
+<%- include('../partials/header', {title: title}) %>
+<div class="content">
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="name" value="<%= user.name %>">
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" value="<%= user.hashedPassword %>">
+        </div>
+        <button type="submit"><%= btnText %></button>
+    </form>
+</div>
+
+<script src="/js/prism.js"></script>
+<%- include('../partials/footer') %>

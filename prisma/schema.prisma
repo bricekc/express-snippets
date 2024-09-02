@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Snippet {
+  id           Int       @id @default(autoincrement())
+  title        String
+  code         String
+  description  String?
+  creationDate DateTime
+  Language     Language? @relation(fields: [languageId], references: [id])
+  languageId   Int?
+  User         User?     @relation(fields: [userId], references: [id])
+  userId       Int?
+}
+
+model Language {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  htmlClass String    @default("language-none")
+  logo      String?
+  snippets  Snippet[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id             Int       @id @default(autoincrement())
+  name           String    @unique
+  hashedPassword String
+  snippets       Snippet[]
+  role           Role      @default(USER)
+}
